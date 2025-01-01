@@ -45,13 +45,13 @@ const Collection = () => {
 
   const sortProduct =  () =>{
     let fpCopy = filterProducts.slice();
-    switch(sortType){
-      case  ' low-high':
-        setFilterProducts(fbCopy.sort((a,b)=>(a.price - b.price)));
+    switch (sortType) {
+      case  'low-high':
+        setFilterProducts(fpCopy.sort((a,b)=>(a.price - b.price)));
         break;
 
-      case  ' high-low':
-        setFilterProducts(fbCopy.sort((a,b)=>(b.price - a.price)));
+      case  'high-low':
+        setFilterProducts(fpCopy.sort((a,b)=>(b.price - a.price)));
         break;
         
       default:
@@ -62,9 +62,11 @@ const Collection = () => {
     }
   }
 
-  // useEffect(()=>{
-  //   setFilterProducts(products);
-  // },[])
+ 
+useEffect(() => {
+    sortProduct(); // Call sortProduct whenever sortType changes
+}, [sortType]);
+
 
   useEffect(()=>{
     applyFilter();
