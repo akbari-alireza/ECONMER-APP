@@ -7,7 +7,7 @@ import RelatedProducts from '../components/RelatedProducts';
 const ProductDetail: React.FC = () => {
 
     const { productID } = useParams();
-    const {products, currency} = useContext(ShopContext)
+    const {products, currency, addToCart} = useContext(ShopContext)
     const [productData,setProductData] = useState();
     const [image, setImage] = useState('');
     const [size,setSize] = useState('')
@@ -18,8 +18,7 @@ const ProductDetail: React.FC = () => {
       products.map((item)=>{
         if (item._id === productID){
           setProductData(item)
-          setImage(item.image[0])
-          console.log(item); 
+          setImage(item.image[0]) 
           return null;
           
         } 
@@ -78,7 +77,7 @@ const ProductDetail: React.FC = () => {
                   }
                 </div>
               </div>
-                <button className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>ADD TO CART</button>
+                <button onClick={()=>addToCart(productData._id, size)} className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>ADD TO CART</button>
                 <hr className='mt-8 sm:w-4/5' />
                 <div>
                   <p>100% Orginal product.</p>
